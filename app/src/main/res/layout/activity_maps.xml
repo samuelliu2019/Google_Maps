@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
-    <!-- Layout for the view Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@android:color/holo_orange_dark"
         android:weightSum="1">
+
         <Button
             android:id="@+id/button_view"
             style="?android:attr/buttonStyleSmall"
@@ -19,33 +19,48 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:onClick="changeView"
-            android:text="View"></Button>
+            android:text="VIEW"></Button>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_track"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="trackMyLocation"
+            android:text="TRACK" />
+
+        <Button
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onSeach"
-            android:text="Search" />
-
-        <Button
-            android:id="@+id/Track"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
+            android:onClick="clearMarkers"
+            android:text="CLEAR" />
 
     </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/editText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText_address"
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onSearch"
+            android:text="Search" />
+    </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
