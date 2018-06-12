@@ -111,12 +111,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.d("MyMapsApp", "Exception on getLastKnownLocation");
         }
         if (!location.matches("")) {
-            //Create Geocoder
-            Geocoder geocoder = new Geocoder(this, Locale.US);
+             Geocoder geocoder = new Geocoder(this, Locale.US);
 
             try {
-                //Get a list of addresses
-                addressList = geocoder.getFromLocationName(location, 100,
+                 addressList = geocoder.getFromLocationName(location, 100,
                         userLocation.latitude - (5.0 / 60.0),
                         userLocation.longitude - (5.0 / 60.0),
                         userLocation.latitude + (5.0 / 60.0),
@@ -136,22 +134,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-//       }
-    }
+     }
 
-    //Method getLocation to place a marker at current location
-    public void getLocation() {
+     public void getLocation() {
 
         try {
             locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-            //get GPS status
-            //isProiderEnabled returns true if user has enabled gps on phone
-            isGPSEnabled = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
+              isGPSEnabled = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
             if (isGPSEnabled) {
                 Log.d("MyMapsApp", "getLocation: GPS is enabled");
             }
-            //get Network status
-            isNetworkEnabled = locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
+             isNetworkEnabled = locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
             if (isNetworkEnabled) {
                 Log.d("MyMapsApp", "getLocation: Network is enabled");
             }
@@ -180,22 +173,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    //LocationListener is an anonymous inner class
-    //Setup for callbacks from the requestLocationUpdates
     LocationListener locationListenerNetwork = new LocationListener() {
 
         @Override
         public void onLocationChanged(Location location) {
             dropAmarker(LocationManager.NETWORK_PROVIDER);
 
-            //Check if doing one time via onMapReady, if so remove updates to both gps and network
-            if (gotMyLocationOneTime == false) {
+             if (gotMyLocationOneTime == false) {
                 locationManager.removeUpdates(this);
                 locationManager.removeUpdates(locationListenerGPS);
                 gotMyLocationOneTime = true;
             } else {
-                //if here then tracking so relaunch request for network
-                if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                 if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                         && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
@@ -244,14 +233,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onLocationChanged(Location location) {
             dropAmarker(LocationManager.GPS_PROVIDER);
-            //Check if doing one time via onMapReady, if so remove updates to both gps and network
-            if (gotMyLocationOneTime == false) {
+             if (gotMyLocationOneTime == false) {
                 locationManager.removeUpdates(this);
                 locationManager.removeUpdates(locationListenerGPS);
                 gotMyLocationOneTime = true;
             } else {
-                //if here then tracking so relaunch request for network
-                if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                 if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                         && ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
